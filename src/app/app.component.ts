@@ -5,7 +5,7 @@ import {CatFact} from './model/cat_fact.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  providers: [ AppService ]
 })
 export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
