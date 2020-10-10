@@ -33,11 +33,5 @@ describe('AppComponent', () => {
       const compiledAppComponent = fixture.debugElement.nativeElement;
       expect(compiledAppComponent.querySelector('app-header')).not.toBe(null);
     });
-
-    it('should render app body', () => {
-      fixture.detectChanges();
-      const compiledAppComponent = fixture.debugElement.nativeElement;
-      expect(compiledAppComponent.querySelector('app-body')).not.toBe(null);
-    });
   });
 });

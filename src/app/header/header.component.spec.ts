@@ -1,6 +1,5 @@
 import {async, TestBed} from '@angular/core/testing';
 import {HeaderComponent} from './header.component';
-import {AppComponent} from '../app.component';
 
 describe('AppComponent', () => {
   let fixture;
@@ -16,16 +15,14 @@ describe('AppComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     debugElement = fixture.debugElement;
     component = fixture.componentInstance;
   });
 
   describe('#render', () => {
     it('should create the app', () => {
-      const fixture = TestBed.createComponent(HeaderComponent);
-      const app = fixture.componentInstance;
-      expect(app).toBeTruthy();
+      expect(component).toBeTruthy();
     });
   });
 });
