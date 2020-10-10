@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   data: [CatFact];
+  title: string;
 
   ngOnInit(): void {
     this.setupData();
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
   private setupData(): void {
     this.appService.getData().subscribe( (response) => {
       this.data = response.data.all;
+      this.title = 'Cat Facts';
     });
   }
 }

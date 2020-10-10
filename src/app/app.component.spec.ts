@@ -95,5 +95,13 @@ describe('AppComponent', () => {
       expect(mockAppService.getData).toHaveBeenCalled();
       expect(component.data).toEqual(expectedData);
     });
+
+    it('should assign title when fetch data success', () => {
+      const expectedTitle = 'Cat Facts';
+
+      fixture.detectChanges();
+
+      expect(component.title).toEqual(expectedTitle);
+    });
   });
 });
