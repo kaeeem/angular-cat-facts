@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from './app.service';
+import {AppService} from './service/app.service';
 import {CatFact} from './model/cat_fact.model';
 
 @Component({

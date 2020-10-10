@@ -1,11 +1,11 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {MockComponents} from 'ng-mocks';
-import {HeaderComponent} from './header/header.component';
-import {BodyComponent} from './body/body.component';
-import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './core/header/header.component';
+import {BodyComponent} from './core/body/body.component';
+import {FooterComponent} from './core/footer/footer.component';
 import {of, throwError} from 'rxjs';
-import {AppService} from './app.service';
+import {AppService} from './service/app.service';
 
 describe('AppComponent', () => {
   let fixture;
