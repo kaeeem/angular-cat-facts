@@ -21,8 +21,9 @@ export class AppComponent implements OnInit {
     this.appService.getData().subscribe( (response) => {
       this.data = response.data.all;
       this.title = 'Cat Facts';
-    }, () => {
+    }, (error) => {
       this.data = [];
+      this.title = `${error.errorCode} - ${error.errorMessage}`;
     });
   }
 }

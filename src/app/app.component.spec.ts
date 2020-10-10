@@ -105,6 +105,13 @@ describe('AppComponent', () => {
 
       expect(component.data).toEqual(expectedData);
     });
+
+    it('should set title to error details when get data failed', () => {
+      const expectedTitle = '500 - Internal server error.';
+      _simulateFailedSetup();
+
+      expect(component.title).toEqual(expectedTitle);
+    });
   });
 
   function _simulateSuccessSetup(): void {
