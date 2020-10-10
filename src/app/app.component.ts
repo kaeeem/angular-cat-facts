@@ -10,7 +10,7 @@ import {CatFact} from './model/cat_fact.model';
 export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
-  data: [CatFact];
+  data: [CatFact?];
   title: string;
 
   ngOnInit(): void {
@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     this.appService.getData().subscribe( (response) => {
       this.data = response.data.all;
       this.title = 'Cat Facts';
+    }, () => {
+      this.data = [];
     });
   }
 }

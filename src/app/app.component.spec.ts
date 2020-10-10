@@ -4,7 +4,7 @@ import {MockComponents} from 'ng-mocks';
 import {HeaderComponent} from './header/header.component';
 import {BodyComponent} from './body/body.component';
 import {FooterComponent} from './footer/footer.component';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {AppService} from './app.service';
 
 describe('AppComponent', () => {
@@ -39,7 +39,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: AppService, useValue: mockAppService }
+        {provide: AppService, useValue: mockAppService}
       ],
       declarations: [
         AppComponent,
@@ -52,7 +52,6 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     debugElement = fixture.debugElement;
     component = fixture.componentInstance;
-    mockAppService.getData.mockReturnValue(of(MOCK_DATA_RESPONSE));
   });
 
   describe('#render', () => {
@@ -61,52 +60,64 @@ describe('AppComponent', () => {
     });
 
     it('should render app header', () => {
-      fixture.detectChanges();
       const compiledAppComponent = fixture.debugElement.nativeElement;
 
       expect(compiledAppComponent.querySelector('app-header')).not.toBe(null);
     });
 
     it('should render app body', () => {
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        const compiledAppComponent = fixture.debugElement.nativeElement;
+      const compiledAppComponent = fixture.debugElement.nativeElement;
 
-        expect(compiledAppComponent.querySelector('app-body')).not.toBe(null);
-      });
+      expect(compiledAppComponent.querySelector('app-body')).not.toBe(null);
     });
 
     it('should render app footer', () => {
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        const compiledAppComponent = fixture.debugElement.nativeElement;
+      const compiledAppComponent = fixture.debugElement.nativeElement;
 
-        expect(compiledAppComponent.querySelector('app-footer')).not.toBe(null);
-      });
+      expect(compiledAppComponent.querySelector('app-footer')).not.toBe(null);
     });
   });
 
   describe('#onInit', () => {
     it('should call get data when initiated', () => {
-      fixture.detectChanges();
+      _simulateSuccessSetup();
 
       expect(mockAppService.getData).toHaveBeenCalled();
     });
 
     it('should setup data when get data success', () => {
       const expectedData = MOCK_DATA_RESPONSE.data.all;
-
-      fixture.detectChanges();
+      _simulateSuccessSetup();
 
       expect(component.data).toEqual(expectedData);
     });
 
     it('should assign title when get data success', () => {
       const expectedTitle = 'Cat Facts';
-
-      fixture.detectChanges();
+      _simulateSuccessSetup();
 
       expect(component.title).toEqual(expectedTitle);
     });
+
+    it('should set data to empty string when get data failed', () => {
+      const expectedData = [];
+      _simulateFailedSetup();
+
+      expect(component.data).toEqual(expectedData);
+    });
   });
+
+  function _simulateSuccessSetup(): void {
+    mockAppService.getData.mockReturnValue(of(MOCK_DATA_RESPONSE));
+    fixture.detectChanges();
+  }
+
+  function _simulateFailedSetup(): void {
+    const errorResponse = {
+      errorCode: '500',
+      errorMessage: 'Internal server error.',
+    };
+    mockAppService.getData.mockReturnValueOnce(throwError(errorResponse));
+    fixture.detectChanges();
+  }
 });
