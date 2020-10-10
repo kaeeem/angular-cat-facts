@@ -3,6 +3,7 @@ import {AppComponent} from './app.component';
 import {MockComponents} from 'ng-mocks';
 import {HeaderComponent} from './header/header.component';
 import {BodyComponent} from './body/body.component';
+import {FooterComponent} from './footer/footer.component';
 
 describe('AppComponent', () => {
   let fixture;
@@ -13,7 +14,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        MockComponents(HeaderComponent, BodyComponent)
+        MockComponents(HeaderComponent, BodyComponent, FooterComponent)
       ],
     }).compileComponents();
   }));
