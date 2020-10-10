@@ -2,6 +2,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {MockComponents} from 'ng-mocks';
 import {HeaderComponent} from './header/header.component';
+import {BodyComponent} from './body/body.component';
 
 describe('AppComponent', () => {
   let fixture;
@@ -12,7 +13,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        MockComponents(HeaderComponent)
+        MockComponents(HeaderComponent, BodyComponent)
       ],
     }).compileComponents();
   }));
@@ -32,6 +33,12 @@ describe('AppComponent', () => {
       fixture.detectChanges();
       const compiledAppComponent = fixture.debugElement.nativeElement;
       expect(compiledAppComponent.querySelector('app-header')).not.toBe(null);
+    });
+
+    it('should render app body', () => {
+      fixture.detectChanges();
+      const compiledAppComponent = fixture.debugElement.nativeElement;
+      expect(compiledAppComponent.querySelector('app-body')).not.toBe(null);
     });
   });
 });
