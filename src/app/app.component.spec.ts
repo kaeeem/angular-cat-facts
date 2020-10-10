@@ -87,16 +87,21 @@ describe('AppComponent', () => {
   });
 
   describe('#onInit', () => {
-    it('should setup data when initiated', () => {
+    it('should call get data when initiated', () => {
+      fixture.detectChanges();
+
+      expect(mockAppService.getData).toHaveBeenCalled();
+    });
+
+    it('should setup data when get data success', () => {
       const expectedData = MOCK_DATA_RESPONSE.data.all;
 
       fixture.detectChanges();
 
-      expect(mockAppService.getData).toHaveBeenCalled();
       expect(component.data).toEqual(expectedData);
     });
 
-    it('should assign title when fetch data success', () => {
+    it('should assign title when get data success', () => {
       const expectedTitle = 'Cat Facts';
 
       fixture.detectChanges();
