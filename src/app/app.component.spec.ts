@@ -40,5 +40,11 @@ describe('AppComponent', () => {
       const compiledAppComponent = fixture.debugElement.nativeElement;
       expect(compiledAppComponent.querySelector('app-body')).not.toBe(null);
     });
+
+    it('should render app footer', () => {
+      fixture.detectChanges();
+      const compiledAppComponent = fixture.debugElement.nativeElement;
+      expect(compiledAppComponent.querySelector('app-footer')).not.toBe(null);
+    });
   });
 });
