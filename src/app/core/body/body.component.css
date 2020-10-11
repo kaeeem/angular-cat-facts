@@ -1,0 +1,10 @@
+table {
+  table-layout: fixed;
+}
+
+table td {
+  overflow: scroll;
+  width: 30%;
+  height: 70px;
+  text-align: center;
+}
