@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   private setupData(): void {
     this.appService.getData().subscribe( (response) => {
-      this.data = response.data.all;
+      this.data = response.all;
       this.title = 'Cat Facts';
     }, (error) => {
       this.data = [];

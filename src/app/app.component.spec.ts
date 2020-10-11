@@ -1,4 +1,4 @@
-import {async, TestBed} from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {MockComponents} from 'ng-mocks';
 import {HeaderComponent} from './core/header/header.component';
@@ -9,48 +9,46 @@ import {AppService} from './service/app.service';
 
 describe('AppComponent', () => {
   let fixture;
-  let debugElement;
   let component;
 
   const MOCK_DATA_RESPONSE = {
-    data: {
-      all: [
-        {
-          _id: '12345',
-          text: 'Meow',
-          type: 'cat',
-          user: {
-            _id: '123',
-            name: {
-              first: 'John',
-              last: 'Doe',
-            },
+    all: [
+      {
+        _id: '12345',
+        text: 'Meow',
+        type: 'cat',
+        user: {
+          _id: '123',
+          name: {
+            first: 'John',
+            last: 'Doe',
           },
-          upvotes: 1,
-          userUpvoted: null,
         },
-      ],
-    }
+        upvotes: 1,
+        userUpvoted: null,
+      },
+    ],
   };
   const mockAppService = {
     getData: jest.fn(),
   };
 
-  beforeEach(async(() => {
+  beforeEach((async () => {
     TestBed.configureTestingModule({
       providers: [
-        {provide: AppService, useValue: mockAppService}
+        { provide: AppService, useValue: mockAppService },
       ],
       declarations: [
         AppComponent,
         MockComponents(HeaderComponent, BodyComponent, FooterComponent)
       ],
-    }).compileComponents();
+    });
+    TestBed.overrideProvider(AppService, { useValue: mockAppService });
+    await TestBed.compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
-    debugElement = fixture.debugElement;
     component = fixture.componentInstance;
   });
 
@@ -86,7 +84,7 @@ describe('AppComponent', () => {
     });
 
     it('should setup data when get data success', () => {
-      const expectedData = MOCK_DATA_RESPONSE.data.all;
+      const expectedData = MOCK_DATA_RESPONSE.all;
       _simulateSuccessSetup();
 
       expect(component.data).toEqual(expectedData);
