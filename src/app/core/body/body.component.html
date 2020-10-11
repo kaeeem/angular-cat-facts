@@ -1,6 +1,7 @@
 <table>
   <thead>
   <tr>
+    <th scope="col">No.</th>
     <th scope="col">Fact</th>
     <th scope="col">Fact Type</th>
     <th scope="col">Writer</th>
@@ -9,11 +10,11 @@
   </thead>
   <tbody id="cat-facts-table-body">
   <tr *ngFor="let catFact of catFacts; let i = index">
+    <th scope="row">{{i+1}}</th>
     <td>{{catFact.text}}</td>
     <td>{{catFact.type}}</td>
     <td>{{catFact.user.name.first}} {{catFact.user.name.last}}</td>
     <td>{{catFact.upvotes}}</td>
   </tr>
-
   </tbody>
 </table>

@@ -10,7 +10,7 @@ import {CatFact} from './model/cat_fact.model';
 export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
-  data: [CatFact?];
+  data: CatFact[];
   title: string;
 
   ngOnInit(): void {
